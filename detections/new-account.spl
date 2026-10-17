@@ -1,0 +1,3 @@
+index=windows_security EventCode=4720
+| table _time Account_Name Target_Account_Name Target_Domain_Name ComputerName
+| sort - _time

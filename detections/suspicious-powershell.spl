@@ -1,0 +1,7 @@
+index=windows_security
+sourcetype="WinEventLog:Microsoft-Windows-Sysmon/Operational"
+EventCode=1
+| search Image="*powershell.exe"
+| where NOT like(Image, "%splunk-powershell.exe%")
+| table _time User Image CommandLine ParentImage
+| sort - _time

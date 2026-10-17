@@ -1,0 +1,5 @@
+index=windows_security EventCode=4625
+| stats count as failed_attempts earliest(_time) as first_seen latest(_time) as last_seen by Account_Name
+| where failed_attempts >= 5
+| convert ctime(first_seen) ctime(last_seen)
+| sort - failed_attempts

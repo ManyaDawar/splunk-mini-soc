@@ -1,0 +1,4 @@
+index=windows_security EventCode=4732
+| search Account_Name!="INSPIRON_14$"
+| table _time Account_Name Group_Name ComputerName
+| sort - _time

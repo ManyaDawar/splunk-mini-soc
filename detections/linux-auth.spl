@@ -1,0 +1,4 @@
+index=windows_security sourcetype=linux_auth earliest=-10m
+| search "authentication failure"
+| stats count as failed_attempts by user
+| where failed_attempts >= 2
