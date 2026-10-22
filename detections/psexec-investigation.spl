@@ -1,0 +1,4 @@
+index=windows_security EventCode IN (1, 7045)
+| search "psexesvc"
+| table _time sourcetype EventCode ComputerName User Image ParentImage Message
+| sort _time
