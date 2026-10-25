@@ -1,0 +1,8 @@
+/* Hunt for selected Defender-setting and hosts-file command-line indicators.
+   A match is a lead to investigate, not proof of compromise.
+   Zero results do not establish that the system is clean. */
+
+index=windows_security EventCode=1 earliest=-7d
+| where match(lower(CommandLine), "set-mppreference|disable.*realtime|add-mppreference|\\\\drivers\\\\etc\\\\hosts|system32\\\\drivers\\\\etc")
+| table _time User Image CommandLine ParentImage
+| sort - _time
