@@ -1,0 +1,7 @@
+index=windows_security earliest=-7d
+| eval event_text=lower(_raw)
+| where like(event_text, "%gogohid.com%")
+    OR like(event_text, "%solarmarker.dat%")
+    OR like(event_text, "%dn-dn/fb1%")
+| table _time host sourcetype EventCode _raw
+| sort - _time
